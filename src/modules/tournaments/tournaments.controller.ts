@@ -26,10 +26,10 @@ export class TournamentsController {
   constructor(private readonly tournamentsService: TournamentsService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create a new tournament' })
+  @ApiOperation({ summary: 'Create a new Tournament' })
   @ApiResponse({
     status: 201,
-    description: 'The tournament has been successfully created.',
+    description: 'The Tournament has been successfully created.',
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @ApiBody({ type: CreateTournamentDto })
@@ -38,10 +38,10 @@ export class TournamentsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all tournaments' })
+  @ApiOperation({ summary: 'Get all Tournaments' })
   @ApiResponse({
     status: 200,
-    description: 'Return the search results for tournaments.',
+    description: 'Return the search results for Tournaments.',
   })
   @ApiResponse({ status: 400, description: 'Invalid parameters.' })
   @ApiQuery({
@@ -89,23 +89,23 @@ export class TournamentsController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Get a tournament by id' })
-  @ApiResponse({ status: 200, description: 'Return a single tournament.' })
+  @ApiOperation({ summary: 'Get a Tournament by id' })
+  @ApiResponse({ status: 200, description: 'Return a single Tournament.' })
   @ApiResponse({ status: 404, description: 'Tournament not found.' })
-  @ApiParam({ name: 'id', description: 'The ID of the tournament to retrieve' })
+  @ApiParam({ name: 'id', description: 'The ID of the Tournament to retrieve' })
   findOne(@Param('id') id: string) {
     return this.tournamentsService.findOne(id);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Update a tournament by id' })
+  @ApiOperation({ summary: 'Update a Tournament by id' })
   @ApiResponse({
     status: 200,
-    description: 'The tournament has been successfully updated.',
+    description: 'The Tournament has been successfully updated.',
   })
   @ApiResponse({ status: 404, description: 'Tournament not found.' })
   @ApiBody({ type: UpdateTournamentDto })
-  @ApiParam({ name: 'id', description: 'The ID of the tournament to update' })
+  @ApiParam({ name: 'id', description: 'The ID of the Tournament to update' })
   update(
     @Param('id') id: string,
     @Body() updateTournamentDto: UpdateTournamentDto,
@@ -114,30 +114,45 @@ export class TournamentsController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Deactivate a tournament by id' })
+  @ApiOperation({ summary: 'Deactivate a Tournament by id' })
   @ApiResponse({
     status: 200,
-    description: 'The tournament has been successfully deactivated.',
+    description: 'The Tournament has been successfully deactivated.',
   })
   @ApiResponse({ status: 404, description: 'Tournament not found.' })
   @ApiParam({
     name: 'id',
-    description: 'The ID of the tournament to deactivate',
+    description: 'The ID of the Tournament to deactivate',
   })
   deactivate(@Param('id') id: string) {
     return this.tournamentsService.deactivate(id);
   }
 
-  @Delete('permanently/:id')
-  @ApiOperation({ summary: 'Delete a tournament permanently by id' })
+  @Delete('remove-partially/:id')
+  @ApiOperation({ summary: 'Delete a Tournament partially by id' })
   @ApiResponse({
     status: 200,
-    description: 'The tournament has been successfully deleted permanently.',
+    description: 'The Tournament has been successfully deleted partially.',
   })
   @ApiResponse({ status: 404, description: 'Tournament not found.' })
   @ApiParam({
     name: 'id',
-    description: 'The ID of the tournament to delete permanently',
+    description: 'The ID of the Tournament to delete partially',
+  })
+  removePartially(@Param('id') id: string) {
+    return this.tournamentsService.removePartially(id);
+  }
+
+  @Delete('permanently/:id')
+  @ApiOperation({ summary: 'Delete a Tournament permanently by id' })
+  @ApiResponse({
+    status: 200,
+    description: 'The Tournament has been successfully deleted permanently.',
+  })
+  @ApiResponse({ status: 404, description: 'Tournament not found.' })
+  @ApiParam({
+    name: 'id',
+    description: 'The ID of the Tournament to delete permanently',
   })
   removePermanently(@Param('id') id: string) {
     return this.tournamentsService.removePermanently(id);

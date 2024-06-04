@@ -1,25 +1,25 @@
 import { IsString, IsNotEmpty, IsDate, IsBoolean } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateTournamentDto {
+export class CreatePlayerDto {
   @ApiProperty({
-    description: 'The name of the Tournament',
-    example: 'Esports Championship 2024',
+    description: 'The name of the Player',
+    example: 'Samuel Quintero Solís',
   })
   @IsString()
   @IsNotEmpty()
   name: string;
 
   @ApiProperty({
-    description: 'The date of the Tournament',
-    example: '2024-08-15',
+    description: 'The date when the Player was born',
+    example: '2005-03-31',
   })
   @IsDate()
   @IsNotEmpty()
-  date: Date;
+  age: Date;
 
   @ApiProperty({
-    description: 'Flag to indicate if the Tournament is active',
+    description: 'Flag to indicate if the Player is active',
     example: true,
   })
   @IsBoolean()

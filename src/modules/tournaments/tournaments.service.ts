@@ -94,8 +94,15 @@ export class TournamentsService {
     if (!tournament) {
       throw new NotFoundException(`Tournament with ID ${id} not found`);
     }
-    tournament.isActive = false; // Soft delete
+    tournament.isActive = false;
     await this.tournamentsRepository.save(tournament);
+  }
+
+  async removePartially(id: string): Promise<void> {
+    const result = await this.tournamentsRepository.softDelete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Tournament with ID ${id} not found`);
+    }
   }
 
   async removePermanently(id: string): Promise<void> {
