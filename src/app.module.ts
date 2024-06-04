@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-/* import { AModule } from './modules/a/a.module';
- */
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { APP_FILTER } from '@nestjs/core';
 /* import { BModule } from './modules/b/b.module';
 import { CModule } from './modules/c/c.module';
  */
+import { TournamentsModule } from './modules/tournaments/tournaments.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -24,7 +24,8 @@ import { CModule } from './modules/c/c.module';
         ssl: true,
       },
     }),
-    /*     AModule,
+    TournamentsModule,
+    /*     
     BModule,
     CModule,
  */
