@@ -2,12 +2,10 @@ import {
   Entity,
   PrimaryColumn,
   Column,
-  /* OneToMany, */
+  ManyToOne,
   DeleteDateColumn,
 } from 'typeorm';
-/* import { Result } from './result.entity';
-  import { Player } from './player.entity';
-   */
+import { Tournament } from 'src/modules/tournaments/entities/tournament.entity';
 @Entity()
 export class Player {
   @PrimaryColumn('uuid')
@@ -25,10 +23,6 @@ export class Player {
   @DeleteDateColumn()
   deletedAt: Date;
 
-  /*   @ManytoOne(() => Tournament, (tournament) => tournament.players)
-    tournaments: Tournament[];
-  
-    @ManytoOne(() => Result, (result) => result.players)
-    results: Result[];
- */
+  @ManyToOne(() => Tournament, (tournament) => tournament.players)
+  tournament: Tournament;
 }
