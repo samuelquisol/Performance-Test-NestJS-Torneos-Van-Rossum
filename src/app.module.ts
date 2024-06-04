@@ -3,10 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { APP_FILTER } from '@nestjs/core';
-/* import { BModule } from './modules/b/b.module';
-import { CModule } from './modules/c/c.module';
- */
 import { TournamentsModule } from './modules/tournaments/tournaments.module';
+import { PlayersModule } from './modules/players/players.module';
+import { ResultsModule } from './modules/results/results.module';
 
 @Module({
   imports: [
@@ -25,10 +24,8 @@ import { TournamentsModule } from './modules/tournaments/tournaments.module';
       },
     }),
     TournamentsModule,
-    /*     
-    BModule,
-    CModule,
- */
+    PlayersModule,
+    ResultsModule,
   ],
   providers: [
     {
