@@ -2,12 +2,13 @@ import {
   Entity,
   PrimaryColumn,
   Column,
-  /* OneToMany, */
+  OneToMany,
   DeleteDateColumn,
+  JoinTable,
 } from 'typeorm';
-/* import { Result } from './result.entity';
-import { Player } from './player.entity';
- */
+import { Result } from 'src/modules/results/entities/result.entity';
+import { Player } from 'src/modules/players/entities/player.entity';
+
 @Entity()
 export class Tournament {
   @PrimaryColumn('uuid')
@@ -23,12 +24,13 @@ export class Tournament {
   isActive: boolean;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deletedAt?: Date;
 
-  /*   @OneToMany(() => Result, (result) => result.tournament)
+  @OneToMany(() => Result, (result) => result.tournaments)
+  @JoinTable()
   results: Result[];
 
   @OneToMany(() => Player, (player) => player.tournament)
+  @JoinTable()
   players: Player[];
- */
 }

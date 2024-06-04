@@ -1,4 +1,10 @@
-import { IsString, IsNotEmpty, IsDate, IsBoolean } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsDate,
+  IsBoolean,
+  IsArray,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreatePlayerDto {
@@ -24,4 +30,12 @@ export class CreatePlayerDto {
   })
   @IsBoolean()
   isActive: boolean;
+
+  @ApiProperty({
+    description: 'List of tournament ID associated with the Player',
+    example: 'updatable1',
+  })
+  @IsArray()
+  @IsNotEmpty()
+  tournamentId: string;
 }
