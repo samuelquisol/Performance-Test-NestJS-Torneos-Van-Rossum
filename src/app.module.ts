@@ -6,6 +6,8 @@ import { APP_FILTER } from '@nestjs/core';
 import { TournamentsModule } from './modules/tournaments/tournaments.module';
 import { PlayersModule } from './modules/players/players.module';
 import { ResultsModule } from './modules/results/results.module';
+import { PrizesModule } from './modules/prizes/prizes.module';
+import { ClaimedPrizesModule } from './modules/claimed-prizes/claimed-prizes.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { ResultsModule } from './modules/results/results.module';
     TournamentsModule,
     PlayersModule,
     ResultsModule,
+    PrizesModule,
+    ClaimedPrizesModule,
   ],
   providers: [
     {

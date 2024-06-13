@@ -4,8 +4,11 @@ import {
   Column,
   ManyToOne,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { Tournament } from 'src/modules/tournaments/entities/tournament.entity';
+import { ClaimedPrize } from 'src/modules/claimed-prizes/entities/claimed-prize.entity';
+
 @Entity()
 export class Player {
   @PrimaryColumn('uuid')
@@ -25,4 +28,8 @@ export class Player {
 
   @ManyToOne(() => Tournament, (tournament) => tournament.players)
   tournament: Tournament;
+
+  @OneToMany(() => ClaimedPrize, claimedPrize => claimedPrize.player)
+  claimedPrizes: ClaimedPrize[];
+
 }
