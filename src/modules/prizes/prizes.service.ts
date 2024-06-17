@@ -5,6 +5,7 @@ import { Prize } from './entities/prize.entity';
 import { Player } from '../players/entities/player.entity';
 import { ClaimedPrize } from '../claimed-prizes/entities/claimed-prize.entity';
 import { v4 as uuidv4 } from 'uuid';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class PrizesService {
@@ -23,6 +24,7 @@ export class PrizesService {
     return prize;
   }
 
+  @Cron('59 23 * * *', { timeZone: 'America/Bogota' })
   async autoAssignPrize(): Promise<void> {
     const players = await this.playerRepository.find({ where: { isActive: true } });
     for (const player of players) {

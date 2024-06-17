@@ -60,7 +60,6 @@ export class PrizesController {
   async remove(@Param('id') id: string): Promise<void> {
     return this.prizesService.deletePrize(id);
   }
-  
 
   @Post('claim/:playerId')
   @ApiOperation({ summary: 'Claim a prize for a player' })
